@@ -11,7 +11,7 @@
 	<jsp:setProperty name="user" property="userEmail"/>
 	
 <!DOCTYPE html>
-유ㅣ어ㅗ이ㅜ르
+유ㅣ어ㅗ이ㅜ르ㅇㄹ오로토오
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
