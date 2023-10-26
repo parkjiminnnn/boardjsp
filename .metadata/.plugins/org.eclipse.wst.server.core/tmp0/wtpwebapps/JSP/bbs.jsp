@@ -45,7 +45,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
-				<li class = "active"><a href="bbs.jsp">게시판</a></li>
+				<li class = "active"><a href="bbs.jsp">자유게시판</a></li>
+				<li><a href="Chat.jsp">실시간채팅</a></li>
 			</ul>
 			<%
 			if(userID == null){
@@ -102,6 +103,7 @@
 						<td><a href = "view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp").replaceAll("<", "&lt;").replaceAll(">", "&gt").replaceAll("\n", "<br>") %></a></td>
 						<td><%= list.get(i).getUserID()  %></td>
 						<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11, 13) + "시" + list.get(i).getBbsDate().substring(14, 16) + "분" %></td>
+						<td><a href="ChatWrite.jsp" class="btn btn-primary pull-right">쪽지보내기</a></td> <!-- 쪽지보내기 버튼 -->
 					</tr>
 				<%		
 					}
