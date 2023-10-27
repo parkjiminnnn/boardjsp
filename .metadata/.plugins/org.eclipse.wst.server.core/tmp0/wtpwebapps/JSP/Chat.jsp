@@ -31,6 +31,18 @@
 		if(request.getParameter("pageNumber") != null){
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
+		
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
+		if(userID == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인 후 입장 가능합니다.')");
+			script.println("location.href = 'login.jsp'");
+			script.println("</script>");
+		} 
+		
 	%>
 <nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -102,10 +114,11 @@
     </div>
   </div>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="js/chat.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="js/app.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="/node_modules/socket.io/socket.io.js"></script>
 </body>
 
 

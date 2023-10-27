@@ -104,6 +104,17 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+		window.onfocus=function(){
+			
+		}
+		window.onload=function(){
+			window.focus();
+			window.moveTo(0,0);
+			window.resizeTo(800,800);
+			window.scrollTo(0,250);
+		}
+	</script>
 
 </body>
 </html>

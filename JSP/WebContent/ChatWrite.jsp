@@ -102,7 +102,7 @@
     </div>
   </div>
 
-  <script src="/socket.io/socket.io.js"></script>
+  <script src="/node_modules/socket.io/socket.io.js"></script>
   <script src="js/chat.js"></script>
 </body>
 
