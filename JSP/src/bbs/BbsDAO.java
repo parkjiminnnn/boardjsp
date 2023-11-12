@@ -34,7 +34,7 @@ public class BbsDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return "";//데이터베이스 오류
+			return "";//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
 	public int getNext() {
 		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
@@ -44,11 +44,11 @@ public class BbsDAO {
 			if (rs.next()) {
 				return rs.getInt(1)+1;
 			}
-			return 1; //첫 번째 게시물인 경우
+			return 1; //泥� 踰덉㎏ 寃뚯떆臾쇱씤 寃쎌슦
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//데이터베이스 오류
+		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
 	public int write(String bbsTitle, String userID, String bbsContent) {
 		String SQL = "INSERT INTO BBS VALUES(?, ?, ?, ?, ?, ?)";
@@ -65,7 +65,7 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//데이터베이스 오류
+		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
 	
 	public ArrayList<Bbs> getList(int pageNumber){
@@ -143,7 +143,7 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//데이터베이스 오류
+		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
 	
 	public int delete(int bbsID) {
@@ -156,6 +156,6 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//데이터베이스 오류
+		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
 }

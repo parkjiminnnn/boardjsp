@@ -60,6 +60,7 @@
 				<li><a href="main.jsp">메인</a></li>
 				<li><a href="bbs.jsp">자유게시판</a></li>
 				<li class = "active"><a href="Chat.jsp">실시간채팅</a></li>
+				<li><a href="evaluate.jsp">강의평가</a></li>
 			</ul>
 			<%
 			if(userID == null){
@@ -94,25 +95,42 @@
 			%>
 		</div>
 	</nav>
-  <div class="wrapper">
-    <div class="user-container">
-      <label for="nickname">대화명</label>
-
-      <input type="text" id="nickname">
-    </div>
-    <div class="display-container">
-      <ul class="chatting-list">
-
-      </ul>
-    </div>
-    <div class="input-container">
-      <span>
-        <input type="text" class="chatting-input">
-        <button class="send-button">전송</button>
-
-      </span>
-    </div>
-  </div>
+	<fieldset>
+        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
+        <br/>
+        <input id="inputMessage" type="text"/>
+        <input type="submit" value="send" onclick="send()" />
+    </fieldset>
+</body>
+    <script type="text/javascript">
+        var textarea = document.getElementById("messageWindow");
+        var webSocket = new WebSocket("ws://localhost:8080/JSP/broadcasting");
+        var inputMessage = document.getElementById('inputMessage');
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    function onMessage(event) {
+        textarea.value += "상대 : " + event.data + "\n";
+    }
+    function onOpen(event) {
+        textarea.value += "연결 성공\n";
+    }
+    function onError(event) {
+      alert(event.data);
+    }
+    function send() {
+        textarea.value += "나 : " + inputMessage.value + "\n";
+        webSocket.send(inputMessage.value);
+        inputMessage.value = "";
+    }
+  </script>
+  
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

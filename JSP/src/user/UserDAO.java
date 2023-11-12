@@ -32,16 +32,16 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				if (rs.getString(1).equals(userPassword)) {
-					return 1; //로그인성공
+					return 1; 
 				}
 				else
-					return 0; //비밀번호 불일치
+					return 0; 
 			}
-			return-1; //아이디가 없음
+			return-1; 
 		} catch (Exception e) {
 		e.printStackTrace();
 		}
-		return -2; //데이터베이스 종료
+		return -2; 
 	}
 	public int join(User user) {
 		String SQL = "INSERT INTO USER VALUES(?, ?, ?, ?, ?)";
@@ -56,7 +56,7 @@ public class UserDAO {
 		} catch (Exception e) {
 		e.printStackTrace();
 		}
-		return -1;//데이터베이스 오류
+		return -1;
 	}
 	
 }
