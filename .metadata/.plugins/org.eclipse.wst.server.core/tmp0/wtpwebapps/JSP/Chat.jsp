@@ -1,4 +1,3 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import = "java.io.PrintWriter" %>
@@ -12,7 +11,7 @@
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/index.css">
 <title>JSP 게시판 웹 사이트</title>
 <style type="text/css">
 	a, a:hover{
@@ -53,7 +52,7 @@
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">강의평가 웹 사이트</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -95,14 +94,27 @@
 			%>
 		</div>
 	</nav>
-	<fieldset>
-        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-        <br/>
-        <input id="inputMessage" type="text"/>
-        <input type="submit" value="send" onclick="send()" />
-    </fieldset>
+	  <div class="wrapper">
+    <div class="user-container">
+      <label for="nickname">사용할 닉네임</label>
+      <input type="text" id="nickname">
+    </div>
+    <div class="display-container">
+      <ul class="chatting-list">
+      
+      </ul>
+    </div>
+    <div class="input-container">
+      <span>
+        <input type="text" class="chatting-input">
+        <button class="send-button">전송</button>
+      </span>
+    </div>
+  </div>
+	
 </body>
-    <script type="text/javascript">
+    <script src="js/chat.js"></script>
+   <%--  <script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
         var webSocket = new WebSocket("ws://localhost:8080/JSP/broadcasting");
         var inputMessage = document.getElementById('inputMessage');
@@ -116,27 +128,23 @@
       onMessage(event)
     };
     function onMessage(event) {
-        textarea.value += "상대 : " + event.data + "\n";
+        textarea.value += "<%=userID%> : " + event.data + "\n";
     }
     function onOpen(event) {
-        textarea.value += "연결 성공\n";
+        textarea.value += "<%=userID%>님이 입장했습니다.\n";
     }
     function onError(event) {
       alert(event.data);
     }
     function send() {
-        textarea.value += "나 : " + inputMessage.value + "\n";
+        textarea.value += <%=userID%>+":" + inputMessage.value + "\n";
         webSocket.send(inputMessage.value);
         inputMessage.value = "";
     }
-  </script>
+  </script> --%>
   
-
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/app.js"></script>
-  <script src="js/chat.js"></script>
-  <script src="/node_modules/socket.io/socket.io.js"></script>
 </body>
 
 

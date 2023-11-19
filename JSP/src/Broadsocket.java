@@ -20,9 +20,9 @@ public class Broadsocket {
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println("onMessage »£√‚");
 		System.out.println(message);
+		
 		synchronized (clients) {
-			// Iterate over the connected sessions
-			// and broadcast the received message
+			
 			for (Session client : clients) {
 				if (!client.equals(session)) {
 					
@@ -38,6 +38,7 @@ public class Broadsocket {
 		// Add session to the connected sessions set
 		System.out.println(session);
 		clients.add(session);
+		
 	}
 
 	@OnClose
