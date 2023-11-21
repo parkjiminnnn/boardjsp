@@ -7,7 +7,6 @@ INDEX VERSION 1.131+C:\Users\지민\바탕 화면\jsp게시판만들기\.metadata\.plugins\o
 628019425.index
 3186769287.index
 194259052.index
-721939392.index
 2896651801.index
 3849326411.index
 395580221.index

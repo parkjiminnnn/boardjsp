@@ -4,22 +4,24 @@
 }
 
 html,
-/* body {
- display: flex;
-      justify-content: center;
-      align-items: center;
+  body {
+ /* display: flex; */
+      /* justify-content: center; */
+      /* align-items: center; */
       height: 100%;
       width: 100%;
-      margin: 0 20%;
-      width: 60%
-} */
+      /* margin: 0 20%;
+      width: 60% */
+}  
 
 .wrapper {
-  height: 100%;
-  width: 100%;
+	
+  height: 670px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+margin: auto; /* 수평 가운데 정렬 */
 }
 
 .user-container {

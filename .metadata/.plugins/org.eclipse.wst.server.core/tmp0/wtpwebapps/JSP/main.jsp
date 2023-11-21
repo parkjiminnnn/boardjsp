@@ -106,7 +106,8 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
+	
 		window.onfocus=function(){
 			
 		}
@@ -116,7 +117,7 @@
 			window.resizeTo(800,800);
 			window.scrollTo(0,250);
 		}
-	</script>
+	</script> -->
 
 </body>
 </html>

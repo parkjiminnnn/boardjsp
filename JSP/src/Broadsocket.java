@@ -11,7 +11,7 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/broadcasting")
 public class Broadsocket {
-
+	
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 	
 

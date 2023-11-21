@@ -113,36 +113,8 @@
   </div>
 	
 </body>
-    <script src="js/chat.js"></script>
-   <%--  <script type="text/javascript">
-        var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket("ws://localhost:8080/JSP/broadcasting");
-        var inputMessage = document.getElementById('inputMessage');
-    webSocket.onerror = function(event) {
-      onError(event)
-    };
-    webSocket.onopen = function(event) {
-      onOpen(event)
-    };
-    webSocket.onmessage = function(event) {
-      onMessage(event)
-    };
-    function onMessage(event) {
-        textarea.value += "<%=userID%> : " + event.data + "\n";
-    }
-    function onOpen(event) {
-        textarea.value += "<%=userID%>님이 입장했습니다.\n";
-    }
-    function onError(event) {
-      alert(event.data);
-    }
-    function send() {
-        textarea.value += <%=userID%>+":" + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
-        inputMessage.value = "";
-    }
-  </script> --%>
-  
+    
+  <script src="js/chat.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

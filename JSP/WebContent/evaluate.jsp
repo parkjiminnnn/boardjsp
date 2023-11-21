@@ -19,7 +19,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="main.jsp">강의평가 웹사이트</a>
+		<a class="navbar-brand" href="main.jsp">강의평가 웹 사이트</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -324,9 +324,9 @@
 			</div>
 		</div>
 	</div>
-	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+	<!-- <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2023 박지민 All Rights Reserved.
-	</footer>
+	</footer> -->
 	<!--제이쿼리 자바스크립트 추가하기  -->
 	<script src="./js/jquery.min.js"></script>
 	<!--파퍼 자바스크립트 추가하기  -->

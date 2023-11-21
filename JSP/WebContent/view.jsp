@@ -45,8 +45,10 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
-				<li class = "active"><a href="bbs.jsp">게시판</a></li>
+				<li class = "active"><a href="main.jsp">메인</a></li>
+				<li><a href="bbs.jsp">자유게시판</a></li>
+				<li><a href="Chat.jsp">실시간채팅</a></li>
+				<li><a href="evaluate.jsp">강의평가</a></li>
 			</ul>
 			<%
 			if(userID == null){
@@ -120,7 +122,6 @@
 			<%
 				}
 			%>
-			<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
