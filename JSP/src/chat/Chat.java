@@ -8,7 +8,7 @@ public class Chat {
 	public int getChatroomID() {
 		return chatroomID;
 	}
-	public void setChatroomID(int chatroomID) {
+	public void setChatroomID(int chatroomID) {	
 		this.chatroomID = chatroomID;
 	}
 	public String getChattitle() {

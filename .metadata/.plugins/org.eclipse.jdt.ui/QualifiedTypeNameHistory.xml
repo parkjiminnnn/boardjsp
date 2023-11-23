@@ -6,4 +6,6 @@
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="user.User"/>
 <fullyQualifiedTypeName name="util.DatabaseUtil"/>
+<fullyQualifiedTypeName name="chat.chatDAO"/>
+<fullyQualifiedTypeName name="chat.Chat"/>
 </qualifiedTypeNameHistroy>

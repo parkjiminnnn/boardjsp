@@ -32,7 +32,7 @@
 					<a class="nav-link" href="bbs.jsp">자유게시판</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="Chat.jsp">실시간채팅</a>
+					<a class="nav-link" href="chatroom.jsp">실시간채팅</a>
 				</li>
 				<li class="nav-item active">
 					<a class="nav-link" href="evaluate.jsp">강의평가</a>

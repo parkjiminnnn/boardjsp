@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class chatDAO {
@@ -11,7 +12,7 @@ public class chatDAO {
 	private ResultSet rs;
 	
 	
-	public chatDAO() {
+	public chatDAO() {	
 		try {
 			String dbURL = "jdbc:mysql://localhost:3306/BBS";
 			String dbID = "root";
@@ -38,24 +39,29 @@ public class chatDAO {
 		}
 		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
-	public int write(int chatroomID, String chattitle, int chatAvailable) {
-		String SQL = "INSERT INTO chatroom VALUES(?, ?, ?)";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, chatroomID);
-			pstmt.setString(2, chattitle);
-			pstmt.setInt(3, chatAvailable);
-			
-			return pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
+	public int write(String chattitle) {
+	    String SQL = "INSERT INTO chatroom (chattitle) VALUES (?)";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+	        pstmt.setString(1, chattitle);
+
+	        int affectedRows = pstmt.executeUpdate();
+	        if (affectedRows > 0) {
+	            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+	                if (generatedKeys.next()) {
+	                    return generatedKeys.getInt(1);  // 새로 생성된 chatroomID 반환
+	                }
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return -1;
 	}
+
 	
 	public ArrayList<Chat> getList(int pageNumber){
-		String SQL = "SELECT * FROM chatroom WHERE chatroomID < ? AND chatAvailable = 1 ORDER BY chatroomID DESC LIMIT 10";
+		String SQL = "SELECT * FROM chatroom WHERE chatroomID<? ORDER BY chatroomID DESC LIMIT 10";
 		ArrayList<Chat> list = new ArrayList<Chat>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -77,7 +83,7 @@ public class chatDAO {
 
 
 	public boolean nextPage(int pageNumber) {
-		String SQL = "SELECT * FROM chatroom WHERE chatroomID < ? AND chatAvailable = 1";
+		String SQL = "SELECT * FROM chatroom WHERE chatroomID < ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext()-(pageNumber-1) * 10);
@@ -126,7 +132,7 @@ public class chatDAO {
 	}
 	
 	public int delete(int chatroomID) {
-		String SQL = "UPDATE chatroom SET chatAvailable = 0 WHERE chatroomID = ?";
+		String SQL = "UPDATE chatroom SET WHERE chatroomID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, chatroomID);

@@ -3,7 +3,6 @@
 <%@ page import = "user.UserDAO"%>
 <%@ page import = "evaluation.EvaluationDAO"%>
 <%@ page import = "evaluation.EvaluationDTO"%>
-<%@ page import = "util.SHA256"%>
 <%@ page import = "java.io.PrintWriter"%>
 <%
 	//강의 평가 등록 코드
