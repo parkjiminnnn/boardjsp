@@ -23,6 +23,7 @@
 </head>
 <body>
 	<%
+		request.setCharacterEncoding("utf-8");
 		String userID = null;
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
@@ -97,9 +98,8 @@
 		          
 		        </button>
 		      </div>
-		        <form action="Chat.jsp" method="post">
+		        <form action="chatroom.jsp" method="post"  onsubmit="return createChat()">
 		      <div class="modal-body">
-		        <!-- 방 만들기 폼 -->
 		        <!-- 방 만들기 폼 -->
 			      <div class="form-group">
 			         <label for="chatTitle">방 제목</label>
@@ -118,7 +118,7 @@
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="backgroundcolor: #eeeeee; text-align: center;"></th>
+						<th style="backgroundcolor: #eeeeee; text-align: center;">방번호</th>
 						<th style="backgroundcolor: #eeeeee; text-align: center;">채팅방목록</th>
 						<th style="backgroundcolor: #eeeeee; text-align: center;"></th>
 					</tr>
@@ -139,7 +139,7 @@
 					 <tr>
 						<td><%= list.get(i).getChatroomID()%></td>
 						<td><%= list.get(i).getChattitle()%></td>	
-						<td><a href="Chat.jsp" class="btn btn-primary pull-right">입장하기</a></td>
+						<td><a href="Chat.jsp?roomnumber=<%=list.get(i).getChatroomID()%>" class="btn btn-primary pull-right">입장하기</a></td>
 					</tr> 
 				<%		
 					}
@@ -161,8 +161,19 @@
 			<div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 			</div>
 		</div>
-	</div>
+	</div><script>
+        function createChat() {
+            // TODO: chatroom.jsp에서 테이블 삽입 로직 추가
+
+            // chat.jsp로 리다이렉트
+            window.location.href = "Chat.jsp";
+
+            // 이벤트 취소 (폼 전송 방지)
+            return false;
+        }
+    </script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 
 </body>
