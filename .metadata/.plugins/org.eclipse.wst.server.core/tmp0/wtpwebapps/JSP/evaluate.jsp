@@ -1,3 +1,6 @@
+<%@page import="evaluation.EvaluationDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="evaluation.EvaluationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import = "java.io.PrintWriter" %>
@@ -83,30 +86,35 @@
 			<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요">
 			<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
 			<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal">등록하기</a>
-			<a class="btn btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
 			
 		</form>
 	</section>
 	<section class="container center">
+	<%
+	EvaluationDAO evaldao = new EvaluationDAO();
+	ArrayList<EvaluationDTO> list = evaldao.getList();
+	for(int i = 0; i<list.size();i++){
+	
+	%>
 	<div class="card bg-light mt-3">
 		<div class="card-header bg-light">
 			<div class="row">
-				<div class="col-8 text-left">컴퓨터개론&nbsp; <small>둘리</small></div>
+				<div class="col-8 text-left"><%=list.get(i).getLectureName()%> &nbsp; <small><%=list.get(i).getProfessorName()%></small></div>
 				<div class="col-4 text-right">
-					종합 <span style="color: red;">A</span>
+					종합 <span style="color: red;"><%=list.get(i).getTotalScore()%></span>
 				</div>
 			</div>
 		</div>
 		<div class="card-body">
 			<h5 class="card-title">
-				정말 좋은 강의에요.&nbsp;<small>(2023년 가을학기)</small>
+				<%=list.get(i).getEvaluationTitle()%>&nbsp;<small><%=list.get(i).getLectureYear()%>년<%=list.get(i).getSemesterDivide()%></small>
 			</h5>
-			<p class="card-text">학점이 잘나와요</p>
+			<p class="card-text"><%=list.get(i).getEvaluationContent()%></p>
 			<div class="row">
 				<div class="col-9 text-left">
-					성적 <span style="color:red;">A</span>
-					난이도 <span style="color:red;">A</span>
-					강의 <span style="color:red;">B</span>
+					성적 <span style="color:red;"><%=list.get(i).getCreditScore()%></span>
+					난이도 <span style="color:red;"><%=list.get(i).getComfortableScore()%></span>
+					강의 <span style="color:red;"><%=list.get(i).getLectureScore()%></span>
 					<span style="color:green;">(추천: 15)</span>
 				</div>
 				<div class="col-3 text-right">
@@ -116,62 +124,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="card bg-light mt-3">
-		<div class="card-header bg-light">
-			<div class="row">
-				<div class="col-8 text-left">데이터베이스&nbsp; <small>또치</small></div>
-				<div class="col-4 text-right">
-					종합 <span style="color: red;">C</span>
-				</div>
-			</div>
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">
-				별로임. &nbsp;<small>(2022년 여름학기)</small>
-			</h5>
-			<p class="card-text">학점이 안나와요</p>
-			<div class="row">
-				<div class="col-9 text-left">
-					성적 <span style="color:red;">C</span>
-					난이도 <span style="color:red;">C</span>
-					강의 <span style="color:red;">B</span>
-					<span style="color:green;">(추천: 2)</span>
-				</div>
-				<div class="col-3 text-right">
-					<a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="card bg-light mt-3">
-		<div class="card-header bg-light">
-			<div class="row">
-				<div class="col-8 text-left">리눅스개론&nbsp; <small>희동</small></div>
-				<div class="col-4 text-right">
-					종합 <span style="color: red;">B</span>
-				</div>
-			</div>
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">
-				그냥그럼&nbsp;<small>(2021년 2학기)</small>
-			</h5>
-			<p class="card-text">그저그럼</p>
-			<div class="row">
-				<div class="col-9 text-left">
-					성적 <span style="color:red;">B</span>
-					난이도 <span style="color:red;">B</span>
-					강의 <span style="color:red;">B</span>
-					<span style="color:green;">(추천: 7)</span>
-				</div>
-				<div class="col-3 text-right">
-					<a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<%
+	}
+	%>
+	
 	</section>
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
@@ -183,7 +139,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="./evaluationRegisterAction.jsp" method="post">
+					<form action="evaluationRegisterAction.jsp" method="post">
 						<div class="form-row">
 							<div class="form-group col-sm-6">
 								<label>강의명</label>
@@ -299,23 +255,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form action="./reportAction.jsp" method="post">
-					
-						<div class="form-group">
-							<label>신고제목</label>
-							<input type="text" name="reportTitle" class="form-control" maxlength="30">
-						</div>
-						<div class="form-group">
-							<label>신고내용</label>
-							<textarea name="reportContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-							<button type="submit" class="btn btn-danger">신고하기</button>
-						</div>
-					</form>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -327,7 +267,7 @@
 	<!--부트스트랩 자바스크립트 추가하기  -->
 	<script src="./js/bootstrapeval.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>\
+	<script src="js/bootstrap.js"></script>
 	<style>
 	
  	 .card {

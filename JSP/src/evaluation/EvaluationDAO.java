@@ -3,6 +3,7 @@ package evaluation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import util.DatabaseUtil;
 
@@ -10,12 +11,12 @@ import util.DatabaseUtil;
 
 
 public class EvaluationDAO {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	
 	public int write(EvaluationDTO evaluationDTO) {	//사용자가 강의평가를 기록하게 해주는 함수
 		String SQL = "INSERT INTO EVALUATION VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)"; //auto increment가 적용되어 있으므로 null 값 넣음
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -56,4 +57,35 @@ public class EvaluationDAO {
 		}
 		return -1; // 데이터베이스 오류
 	}
+	public ArrayList<EvaluationDTO> getList(){
+		String SQL = "SELECT * FROM evaluation";
+		ArrayList<EvaluationDTO> list = new ArrayList<EvaluationDTO>();
+		try {
+			 conn = DatabaseUtil.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				EvaluationDTO dto = new EvaluationDTO(0, SQL, SQL, SQL, 0, SQL, SQL, SQL, SQL, SQL, SQL, SQL, SQL, 0);
+				dto.setEvaluationID(rs.getInt(1));
+				dto.setUserID(rs.getString(2));
+				dto.setLectureName(rs.getString(3));
+				dto.setProfessorName(rs.getString(4));
+				dto.setLectureYear(rs.getInt(5));
+				dto.setSemesterDivide(rs.getString(6));
+				dto.setLectureDivide(rs.getString(7));
+				dto.setEvaluationTitle(rs.getString(8));
+				dto.setEvaluationContent(rs.getString(9));
+				dto.setTotalScore(rs.getString(10));
+				dto.setCreditScore(rs.getString(11));
+				dto.setComfortableScore(rs.getString(12));
+				dto.setLectureScore(rs.getString(13));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
+	}
+	
 }

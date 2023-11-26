@@ -1,0 +1,89 @@
+package evaluation;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import util.DatabaseUtil;
+
+
+
+
+public class EvaluationDAO {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	public int write(EvaluationDTO evaluationDTO) {	//사용자가 강의평가를 기록하게 해주는 함수
+		String SQL = "INSERT INTO EVALUATION VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)"; //auto increment가 적용되어 있으므로 null 값 넣음
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, evaluationDTO.getUserID());   
+			pstmt.setString(2, evaluationDTO.getLectureName());   
+			pstmt.setString(3, evaluationDTO.getProfessorName());   
+			pstmt.setInt(4, evaluationDTO.getLectureYear());   
+			pstmt.setString(5, evaluationDTO.getSemesterDivide());   
+			pstmt.setString(6, evaluationDTO.getLectureDivide());   
+			pstmt.setString(7, evaluationDTO.getEvaluationTitle());   
+			pstmt.setString(8, evaluationDTO.getEvaluationContent());   
+			pstmt.setString(9, evaluationDTO.getTotalScore());   
+			pstmt.setString(10, evaluationDTO.getCreditScore());   
+			pstmt.setString(11, evaluationDTO.getComfortableScore());   
+			pstmt.setString(12, evaluationDTO.getLectureScore());   
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1; // 데이터베이스 오류
+	}
+	public ArrayList<EvaluationDTO> getList(){
+		String SQL = "SELECT * FROM evaluation WHERE evaluationID < ? ";
+		ArrayList<EvaluationDTO> list = new ArrayList<EvaluationDTO>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				EvaluationDTO dto = new EvaluationDTO();
+				dto.setEvaluationID(rs.getInt(1));
+				dto.setLectureName(rs.getString(2));
+				dto.setProfessorName(rs.getString(3));
+				dto.setLectureYear(rs.getInt(4));
+				dto.setSemesterDivide(rs.getString(5));
+				dto.setLectureDivide(rs.getString(6));
+				dto.setEvaluationTitle(rs.getString(7));
+				dto.setEvaluationContent(rs.getString(8));
+				dto.setTotalScore(rs.getString(9));
+				dto.setCreditScore(rs.getString(10));
+				dto.setComfortableScore(rs.getString(11));
+				dto.setLectureScore(rs.getString(12));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
+	}
+	
+}

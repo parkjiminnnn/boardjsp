@@ -6,7 +6,7 @@
 <%@ page import = "java.io.PrintWriter"%>
 <%
 	//강의 평가 등록 코드
-	request.setCharacterEncoding("euc-kr"); 
+	request.setCharacterEncoding("utf-8"); 
 	String userID = null;
 	if(session.getAttribute("userID") != null){
 		userID = (String) session.getAttribute("userID");
@@ -100,5 +100,6 @@
 		script.close();
 		return;
 	}
+	
 
 %>

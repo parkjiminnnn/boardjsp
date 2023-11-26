@@ -2,17 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="입장하기" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="nick"/>
+			<item value="신고"/>
+			<item value="등록하기"/>
+			<item value="setch"/>
 			<item value="입장하기"/>
 			<item value="chat.jsp"/>
 			<item value="write"/>
 			<item value="chatTitle"/>
-			<item value="등록하기"/>
 			<item value="bbs"/>
 			<item value="registermodal"/>
 			<item value="글쓰기"/>
@@ -20,9 +23,6 @@
 			<item value="navbar-nav"/>
 			<item value="navbar"/>
 			<item value="wrapper"/>
-			<item value="div"/>
-			<item value="navbar-default .navbar-brand"/>
-			<item value="접속"/>
 		</list>
 		<list key="replacehistory">
 			<item value="px"/>
@@ -30,7 +30,7 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="288" key="DIALOG_WIDTH"/>
-		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
 		<item value="1265" key="DIALOG_X_ORIGIN"/>
 		<item value="479" key="DIALOG_Y_ORIGIN"/>

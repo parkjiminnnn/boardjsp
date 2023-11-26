@@ -22,7 +22,8 @@
 </head>
 <body>
 <%
-		String roomnumber = request.getParameter("roomnumber"); 
+		String roomnumber = request.getParameter("roomnumber");
+		String chattitle = request.getParameter("chattitle");
 		String userID = null;
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
@@ -97,6 +98,7 @@
 	</nav>
 	  <div class="wrapper">
     <div class="user-container">
+      <label for="chattitle"><%=chattitle %></label>
       <label for="nickname">사용할 닉네임</label>
       <input type="text" id="nickname">
     </div>

@@ -98,7 +98,7 @@
 		          
 		        </button>
 		      </div>
-		        <form action="chatroom.jsp" method="post"  onsubmit="return createChat()">
+		        <form action="chatroom.jsp" method="post">
 		      <div class="modal-body">
 		        <!-- 방 만들기 폼 -->
 			      <div class="form-group">
@@ -139,7 +139,7 @@
 					 <tr>
 						<td><%= list.get(i).getChatroomID()%></td>
 						<td><%= list.get(i).getChattitle()%></td>	
-						<td><a href="Chat.jsp?roomnumber=<%=list.get(i).getChatroomID()%>" class="btn btn-primary pull-right">입장하기</a></td>
+						<td><a href="Chat.jsp?roomnumber=<%=list.get(i).getChatroomID()%>&chattitle=<%= list.get(i).getChattitle()%>" class="btn btn-primary pull-right">입장하기</a></td>
 					</tr> 
 				<%		
 					}
@@ -161,19 +161,8 @@
 			<div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 			</div>
 		</div>
-	</div><script>
-        function createChat() {
-            // TODO: chatroom.jsp에서 테이블 삽입 로직 추가
-
-            // chat.jsp로 리다이렉트
-            window.location.href = "Chat.jsp";
-
-            // 이벤트 취소 (폼 전송 방지)
-            return false;
-        }
-    </script>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 
 </body>
