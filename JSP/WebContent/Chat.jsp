@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import = "java.io.PrintWriter" %>
-	<%@page import = "bbs.BbsDAO" %>
-	<%@page import = "bbs.Bbs" %>
 	<%@page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +41,8 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		} 
-		
+	
+	
 	%>
 <nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -114,16 +113,14 @@
       </span>
     </div>
   </div>
-	
-</body>
     
   <script src="js/chat.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script>
   	var roomNumber = '<%= roomnumber %>';
-  
 </script>
+
 </body>
 
 
