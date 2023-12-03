@@ -7,7 +7,6 @@
     const chatInput = document.querySelector(".chatting-input");
     const sendButton = document.querySelector(".send-button");
     const displayContainer = document.querySelector(".display-container");
-    const userID = getUserIdFromJSP();
     
     chatInput.addEventListener("keypress", (event) => {
       if (event.keyCode === 13) {

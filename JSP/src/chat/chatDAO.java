@@ -39,12 +39,13 @@ public class chatDAO {
 		}
 		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
 	}
-	public int write(String chattitle) {
-	    String SQL = "INSERT INTO chatroom (chattitle) VALUES (?)";
+	public int write(String chattitle, String userID) {
+	    String SQL = "INSERT INTO chatroom (chattitle, userID) VALUES (?,?)";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 	        pstmt.setString(1, chattitle);
-
+	        pstmt.setString(2, userID);
+	        
 	        int affectedRows = pstmt.executeUpdate();
 	        if (affectedRows > 0) {
 	            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
@@ -141,6 +142,6 @@ public class chatDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//�뜲�씠�꽣踰좎씠�뒪 �삤瑜�
+		return -1;
 	}
 }

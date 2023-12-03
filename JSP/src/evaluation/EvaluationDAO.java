@@ -1,11 +1,12 @@
 package evaluation;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import util.DatabaseUtil;
+
 
 
 
@@ -14,11 +15,23 @@ public class EvaluationDAO {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	public static Connection getConnection() {
+		try {
+			String dbURL = "jdbc:mysql://localhost:3306/BBS";
+			String dbID = "root";
+			String dbPassword = "1234";
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection(dbURL, dbID, dbPassword);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 	
 	public int write(EvaluationDTO evaluationDTO) {	//사용자가 강의평가를 기록하게 해주는 함수
 		String SQL = "INSERT INTO EVALUATION VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)"; //auto increment가 적용되어 있으므로 null 값 넣음
 		try {
-			conn = DatabaseUtil.getConnection();
+			conn = getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, evaluationDTO.getUserID());   
 			pstmt.setString(2, evaluationDTO.getLectureName());   
@@ -61,7 +74,7 @@ public class EvaluationDAO {
 		String SQL = "SELECT * FROM evaluation";
 		ArrayList<EvaluationDTO> list = new ArrayList<EvaluationDTO>();
 		try {
-			 conn = DatabaseUtil.getConnection();
+			 conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -94,7 +107,7 @@ public class EvaluationDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DatabaseUtil.getConnection();
+			conn = getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, Integer.parseInt(evaluationID));
 			return pstmt.executeUpdate();
@@ -114,7 +127,7 @@ public class EvaluationDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DatabaseUtil.getConnection();
+			conn = getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, Integer.parseInt(evaluationID));
 			return pstmt.executeUpdate();
@@ -134,7 +147,7 @@ public class EvaluationDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DatabaseUtil.getConnection();
+			conn = getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, Integer.parseInt(evaluationID));
 			rs = pstmt.executeQuery();

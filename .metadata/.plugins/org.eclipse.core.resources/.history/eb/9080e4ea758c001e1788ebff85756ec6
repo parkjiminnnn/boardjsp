@@ -1,9 +1,0 @@
-package likey;
-
-public class LikeyDTO {
-	
-	String userID;
-	int evaluationID;
-	String userIP;
-
-}

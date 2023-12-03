@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>Chat&Board</title>
 </head>
 <body>
 	<%
@@ -26,7 +26,7 @@
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">강의평가 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">Chat&Board</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -99,7 +99,7 @@
 	<div class="container">
 		<div class="jumbotron">
 			<div class="container">
-				<p>이 웹 사이트는 부트스트랩으로 만든 JSP 웹 사이트입니다. 최소한의 간단한 로직만을 이용해서 개발했습니다. 디자인 템플릿으로는 부트스트랩을 이용했습니다. </p>
+				<p>이 웹 사이트는 에브리타임 어플을 모티브로 만들었습니다. 채팅기능, 게시판 등록, 강의평가가 가능합니다. </p>
 				<a class="btn btn-primary btn-pull" href="#" role="button">자세히 알아보기</a>
 			</div>
 		</div>

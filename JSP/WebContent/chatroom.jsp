@@ -2,10 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import = "bbs.BbsDAO" %>
-	<%@page import = "bbs.Bbs" %>
 	<%@page import = "java.util.ArrayList" %>
-	<%@page import = "chat.Chat" %>
-	<%@page import = "chat.chatDAO" %>
+	<%@page import = "chat.*" %>
+	<%@ page import = "java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>강의평가 웹사이트</title>
+<title>Chat&Board</title>
 <style type="text/css">
 	a, a:hover{
 		color: #000000;
@@ -25,6 +24,7 @@
 	<%
 		request.setCharacterEncoding("utf-8");
 		String userID = null;
+		
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
 		}
@@ -42,7 +42,7 @@
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">강의평가 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">Chat&Board</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -131,8 +131,14 @@
 					if(request.getMethod().equalsIgnoreCase("POST")) {
 				        // POST 요청이 왔을 때만 실행
 				        String chatTitle = request.getParameter("chatTitle");
-				        chatdao.write(chatTitle); // 채팅방을 생성하는 메소드를 호출하고 데이터베이스에 새로운 채팅방 정보를 추가하는 것으로 가정
+				        chatdao.write(chatTitle, userID); // 채팅방을 생성하는 메소드를 호출하고 데이터베이스에 새로운 채팅방 정보를 추가하는 것으로 가정
 				        list = chatdao.getList(pageNumber); // 새로운 목록을 가져옴
+				        
+				        PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("location.href = 'Chat.jsp;'");
+						script.println("</script>");
+						script.close();  
 				    }
 					for(int i = 0; i< list.size(); i++){
 				%>
@@ -141,22 +147,12 @@
 						<td><%= list.get(i).getChattitle()%></td>	
 						<td><a href="Chat.jsp?roomnumber=<%=list.get(i).getChatroomID()%>&chattitle=<%= list.get(i).getChattitle()%>" class="btn btn-primary pull-right">입장하기</a></td>
 					</tr> 
-				<%		
+				<%
+				 
 					}
 				%>
 				</tbody>
 			</table>
-			<%
-				if(pageNumber !=1){
-			%>	
-					<a href="chatroom.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전페이지</a>	
-			<%		
-				}if(chatdao.nextPage(pageNumber + 1)){
-			%>
-				<a href="chatroom.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음페이지</a>
-			<%
-				}
-			%>
 			
 			<div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 			</div>
